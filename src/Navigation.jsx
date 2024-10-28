@@ -1,11 +1,17 @@
-export function Navigation() {
-    return (
-      <nav className="hidden md:flex space-x-4 ml-8">
-        <a href="#" className="text-gray-600 hover:text-gray-900">Collections</a>
-        <a href="#" className="text-gray-600 hover:text-gray-900">Men</a>
-        <a href="#" className="text-gray-600 hover:text-gray-900">Women</a>
-        <a href="#" className="text-gray-600 hover:text-gray-900">About</a>
-        <a href="#" className="text-gray-600 hover:text-gray-900">Contact</a>
-      </nav>
-    )
-  }
+import React from 'react';
+
+function Navigation({ isOpen }) {
+  const navClass = `navigation ${isOpen ? 'open' : ''}`;
+  
+  return (
+    <nav className={navClass}>
+      <a href="#collections">Collections</a>
+      <a href="#men">Men</a>
+      <a href="#women">Women</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  );
+}
+
+export default Navigation;

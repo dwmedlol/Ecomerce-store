@@ -1,17 +1,23 @@
-export function Thumbnails({ images, currentIndex, onThumbnailClick }) {
-    return (
-      <div className="hidden md:flex md:justify-between mt-4">
-        {images.map((img, index) => (
-          <Image
-            key={index}
-            src={img}
+import React from 'react';
+
+function Thumbnails({ images, currentIndex, onSelect }) {
+  return (
+    <div className="thumbnails">
+      {images.map((image, index) => (
+        <button
+          key={index}
+          className={`thumbnail-button ${index === currentIndex ? 'active' : ''}`}
+          onClick={() => onSelect(index)}
+        >
+          <img
+            src={image}
             alt={`Thumbnail ${index + 1}`}
-            width={80}
-            height={80}
-            className={`rounded-lg cursor-pointer ${index === currentIndex ? 'border-2 border-orange-500' : ''}`}
-            onClick={() => onThumbnailClick(index)}
+            className="thumbnail-image"
           />
-        ))}
-      </div>
-    )
-  }
+        </button>
+      ))}
+    </div>
+  );
+}
+
+export default Thumbnails;

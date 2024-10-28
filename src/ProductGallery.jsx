@@ -1,43 +1,54 @@
-'use client'
-import { useState } from 'react'
+import React, { useState } from 'react';
+import Thumbnails from './Thumbnails';
 
+function ProductGallery() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  const images = [
+    '/product-1.jpg',
+    '/product-2.jpg',
+    '/product-3.jpg',
+    '/product-4.jpg'
+  ];
 
-export function ProductGallery({ images }) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
 
-  const nextImage = () => setCurrentImageIndex((prev) => (prev + 1) % images.length)
-  const prevImage = () => setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
 
   return (
-    <div className="md:w-1/2 lg:w-2/3">
-      <div className="relative">
-        <Image
+    <div className="product-gallery">
+      <div className="main-image-container">
+        <img
           src={images[currentImageIndex]}
           alt="Fall Limited Edition Sneakers"
-          width={400}
-          height={400}
-          className="w-full md:rounded-2xl"
+          className="main-image"
         />
         <button 
           onClick={prevImage}
-          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white rounded-full p-2 md:hidden"
+          className="gallery-button prev-button"
           aria-label="Previous image"
         >
-          <ChevronLeft className="h-6 w-6" />
+          ←
         </button>
         <button 
           onClick={nextImage}
-          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white rounded-full p-2 md:hidden"
+          className="gallery-button next-button"
           aria-label="Next image"
         >
-          <ChevronRight className="h-6 w-6" />
+          →
         </button>
       </div>
       <Thumbnails 
-        images={images} 
-        currentIndex={currentImageIndex} 
-        onThumbnailClick={setCurrentImageIndex} 
+        images={images}
+        currentIndex={currentImageIndex}
+        onSelect={setCurrentImageIndex}
       />
     </div>
-  )
+  );
 }
+
+export default ProductGallery;

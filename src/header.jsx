@@ -1,19 +1,38 @@
 'use client'
 
-export function Header() {
+import React, { useState } from 'react';
+import Navigation from './Navigation';
+
+function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <header className="flex justify-between items-center p-4 border-b">
-      <div className="flex items-center space-x-4">
-        <Menu className="h-6 w-6 md:hidden" />
-        <h1 className="text-2xl font-bold">sneakers</h1>
-        <Navigation />
+    <header className="header">
+      <div className="header-left">
+        <button 
+          className="menu-button mobile-only"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          ☰
+        </button>
+        <h1 className="logo">sneakers</h1>
+        <Navigation isOpen={isMenuOpen} />
       </div>
-      <div className="flex items-center space-x-4">
-        <ShoppingCart className="h-6 w-6" />
-        <div className="w-8 h-8 bg-gray-200 rounded-full overflow-hidden">
-          <Image src="/placeholder.svg" alt="User avatar" width={32} height={32} />
+      <div className="header-right">
+        <button className="cart-button" aria-label="Shopping cart">
+          🛒
+        </button>
+        <div className="avatar">
+          <img 
+            src="/avatar-placeholder.png" 
+            alt="User avatar" 
+            className="avatar-image"
+          />
         </div>
       </div>
     </header>
-  )
+  );
 }
+
+export default Header;
