@@ -25,9 +25,8 @@ function Header() {
         </button>
         <div className="avatar">
           <img 
-            src="/avatar-placeholder.png" 
-            alt="User avatar" 
-            className="avatar-image"
+            src="product2.jpg" 
+            alt="User avatar"
           />
         </div>
       </div>

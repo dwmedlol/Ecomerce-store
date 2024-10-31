@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import Thumbnails from './Thumbnails';
 
+import product1 from './imgs/product1.jpg';
+import product2 from './imgs/product2.jpg';
+import product3 from './imgs/product3.jpg';
+import product4 from './imgs/product4.jpg';
+
 function ProductGallery() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
   const images = [
-    '/product-1.jpg',
-    '/product-2.jpg',
-    '/product-3.jpg',
-    '/product-4.jpg'
-  ];
+    product1,
+    product2,
+    product3,
+    product4
+];
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
